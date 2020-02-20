@@ -23,6 +23,16 @@ https://kubernetes.io/docs/tasks/tools/install-minikube/
 Stern allows you to tail multiple pods on Kubernetes and multiple containers within the pod. Each result is color coded for quicker debugging.  
 https://github.com/wercker/stern
 
+### kubens + kubectx
+**kubens** helps you switch between Kubernetes namespaces smoothly  
+**kubectx** helps you switch between clusters back and forth  
+https://github.com/ahmetb/kubectx  
+```bash
+git clone git@github.com:ahmetb/kubectx.git
+cd kubectx
+sudo cp -rp kube* /usr/local/bin/
+```
+
 ## i3 windows manager
 Install **regolith** package:  
 https://regolith-linux.org/download/  
