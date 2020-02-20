@@ -1,6 +1,10 @@
 ## Dotfiles
 Repository with my workstation config files and notes 
 
+## Packages
+Packages to install:  
+git, vim, 
+
 ## VIM setup
 Install Vundle (package manager)  
 https://github.com/VundleVim/Vundle.vim#quick-start  
@@ -12,7 +16,7 @@ Look at the plugins inside the **.vimrc** file.
 
 ## K8s
 ### MiniKube
-Before install Virtualbox, then: 
+Before install Virtualbox, then:  
 https://kubernetes.io/docs/tasks/tools/install-minikube/
 
 ### stern
