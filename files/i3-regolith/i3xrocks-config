@@ -86,3 +86,6 @@ percent_color=true
 command=date +"%A %d/%m/%Y   %H:%M "
 interval=60
 
+[calendar-button]
+full_text=Calendar
+command=i3-msg -q exec gnome-calendar >/dev/null
