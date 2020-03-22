@@ -5,6 +5,10 @@ Repository with my workstation config files and notes
 Packages to install:  
 git, vim, 
 
+## bat
+A cat clone with colors:  
+bat: https://github.com/sharkdp/bat
+
 ## VIM setup
 Install Vundle (package manager)  
 https://github.com/VundleVim/Vundle.vim#quick-start  
