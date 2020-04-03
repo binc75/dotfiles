@@ -3,7 +3,11 @@ Repository with my workstation config files and notes
 
 ## Packages
 Packages to install:  
-git, vim, 
+git, vim,
+
+## Cloud
+Software to install:
+gcloud, terraform, kubectl, git 
 
 ## bat
 A cat clone with colors:  
