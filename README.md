@@ -17,10 +17,26 @@ bat: https://github.com/sharkdp/bat
 Install Vundle (package manager)  
 https://github.com/VundleVim/Vundle.vim#quick-start  
 
+Look at the plugins inside the **.vimrc** file.
+```bash
+# from inside vim type
+:PluginInstall
+```
+
+### YCM (option 1)
 Install YouCompleteMe  
 https://github.com/ycm-core/YouCompleteMe#linux-64-bit
 
-Look at the plugins inside the **.vimrc** file.
+### coc.nvim (option 2)
+Install "coc": Intellisense engine for Vim8 & Neovim, full language server protocol support as VSCode  
+https://github.com/neoclide/coc.nvim  
+https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim (**Using vim8's native package manager**)
+
+Install coc extentions:
+```bash
+:ConInstall coc-python coc-json coc-yaml coc-markdownlint
+```
+
 
 ## K8s
 ### MiniKube
