@@ -11,10 +11,11 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Plugins
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'hashivim/vim-terraform'
+Plugin 'mrk21/yaml-vim'
+Plugin 'Yggdroot/indentLine'
 "Plugin 'scrooloose/nerdcommenter'
 
 " All of your Plugins must be added before the following line
@@ -75,4 +76,13 @@ endif
 " Set F2 to activate/deactivate paste mode
 set pastetoggle=<F2>
 
+" Allow vim-terraform to align settings automatically with Tabularize.
+let g:terraform_align=1
+" Allow vim-terraform to automatically fold (hide until unfolded) sections of terraform code. Defaults to 0 which is off.
+let g:terraform_fold_sections=0
+" Allow vim-terraform to automatically format *.tf and *.tfvars files with terraform fmt. 
+" You can also do this manually with the :TerraformFmt command.
+let g:terraform_fmt_on_save=1
 
+" Yaml
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:> foldmethod=indent nofoldenable
