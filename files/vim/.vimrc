@@ -14,7 +14,8 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'hashivim/vim-terraform'
-Plugin 'mrk21/yaml-vim'
+Plugin 'preservim/nerdtree'
+"Plugin 'mrk21/yaml-vim'
 Plugin 'Yggdroot/indentLine'
 "Plugin 'scrooloose/nerdcommenter'
 
@@ -76,6 +77,12 @@ endif
 " Set F2 to activate/deactivate paste mode
 set pastetoggle=<F2>
 
+" Set F1 NERDtree
+map <silent> <F1> :NERDTreeToggle<CR>
+
+" Set F5: Remove all trailing whitespace by pressing F5
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
 " Allow vim-terraform to align settings automatically with Tabularize.
 let g:terraform_align=1
 " Allow vim-terraform to automatically fold (hide until unfolded) sections of terraform code. Defaults to 0 which is off.
@@ -88,5 +95,8 @@ let g:terraform_fmt_on_save=1
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:> foldmethod=indent nofoldenable
 
 " Prevent auto italic/bold text (disable indentplugin for some file types) 
-let g:indentLine_fileTypeExclude = ['json', 'markdown']
+let g:indentLine_fileTypeExclude = ['json', 'markdown', 'dockerfile']
 set conceallevel=0
+
+
+let g:ycm_python_binary_path='./env/bin/python'
