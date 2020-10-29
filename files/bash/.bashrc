@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -160,34 +160,32 @@ fi
 
 ###############################################################################
 # Prompt color
-#PS1="$BLDBLU[$BLDGRN\u$NOCOLOR @ $BLDPUR\h$BLDBLU]-[\T][$NOCOLOR\w$BLDBLU]-[$BLDPUR\$$BLDBLU]$BLDGRN\$(if [[ \$? -eq 0 ]]; then echo \"$BLDGRN :-)\"; else echo \"$BLDRED:-(\"; fi)$NOCOLOR "
-PS1="$BLDBLU[\$(if [[ \$? -eq 0 ]]; then echo \"$BLDGRN\u\"; else echo \"$BLDRED\u\"; fi)$NOCOLOR@$BLDPUR\h:$NOCOLOR\w$BLDBLU]-[\T][$NOCOLOR\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)$BLDBLU]$NOCOLOR\n$ "
+#PS1="$BLDBLU[\$(if [[ \$? -eq 0 ]]; then echo \"$BLDGRN\u\"; else echo \"$BLDRED\u\"; fi)$NOCOLOR@$BLDPUR\h:$NOCOLOR\w$BLDBLU]-[\T][$NOCOLOR\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)$BLDBLU]$NOCOLOR\n$ "
+PS1="$BLDBLU[\$(if [[ \$? -eq 0 ]]; then echo \"$BLDGRN\u\"; else echo \"$BLDRED\u\"; fi)$NOCOLOR@$BLDPUR\h:$NOCOLOR\w$BLDBLU]-[\t][⎈ $TXTYLW\$(kubectl config current-context 2>/dev/null)$BLDBLU][⎇  $NOCOLOR\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)$BLDBLU]$NOCOLOR\n$ "
 
-alias figino="ssh -t -A bastion.cscs.ch ssh figino"
-alias powerpoint='wine "C:\Program Files\Microsoft Office\Office14\POWERPNT.EXE"'
-alias excel='wine "C:\Program Files\Microsoft Office\Office14\EXCEL.EXE"'
-alias word='wine "C:\Program Files\Microsoft Office\Office14\WINWORD.EXE"'
-alias vpn-ethz='sudo openconnect --script /home/nbianchi/.vpnc-script https://sslvpn.ethz.ch/cscs --no-cert-check -u=nbianchi@cscs'
-alias vpn-cscs='sudo openconnect --script /home/nbianchi/.vpnc-script https://sslvpn.ethz.ch/ --no-cert-check -u=nbianchi@cscs'
 alias vi='vim'
 alias gpgcrypt='gpg -a -r bianchi.nicola@gmail.com --encrypt'
 alias gpgdecrypt='gpg --decrypt'
-alias pollux-prod='ssh -l root 148.187.101.16'
-alias pollux-prod-bare='ssh -l root 148.187.101.11'
-alias pollux-tds='ssh -l root 148.187.102.16'
-alias pollux-tds-bare='ssh -l root 148.187.102.11'
-alias openstack-prod='source ~/tmp/openstack/cli/pollux.env'
-alias openstack-tds='source ~/tmp/openstack/cli/pollux-tds.env'
 alias gitcp='git commit -a -m "AutoCommit" && git push'
-alias k='kubectl'
-complete -F __start_kubectl k
 
 # Kube utilities
 if (command -v kubectl >/dev/null 2>&1)
   then
     source <(kubectl completion bash)
 fi
+alias k='kubectl'
+complete -F __start_kubectl k
+
+# Kubectx setup
+_kube_contexts()
+{
+  local curr_arg;
+  curr_arg=${COMP_WORDS[COMP_CWORD]}
+  COMPREPLY=( $(compgen -W "- $(kubectl config get-contexts --output='name')" -- $curr_arg ) );
+}
+alias kctx='kubectx'
+complete -F _kube_contexts kubectx kctx
 
 
 
-export PATH=$PATH:$HOME/.linkerd2/bin
+
